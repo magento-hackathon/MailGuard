@@ -55,9 +55,4 @@ class Hackathon_MailGuard_Test_Config_ConfigTests extends EcomDev_PHPUnit_Test_C
         );
     }
 
-    public function checkBlockAliases()
-    {
-        $this->assertBlockAlias('hackathon_mailguard', )
-    }
-
 }

@@ -8,7 +8,7 @@
     <phpunit>
         <suite>
             <modules>
-                <Icc_RemoveCustomerAccount />
+                <Hackathon_MailGuard />
             </modules>
         </suite>
     </phpunit>
