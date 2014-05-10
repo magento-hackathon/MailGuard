@@ -43,24 +43,43 @@ class Hackathon_MailGuard_Model_MailGuard extends Mage_Core_Model_Abstract
      */
     public function canSend(Varien_Object $email, $emailsTo)
     {
-        $itemsToCheck = array();
-        // Build an array of items to check
-        foreach ($emailsTo as $emailTo) {
-            // Add email
-            $itemsToCheck[] = $emailTo;
+        $validatedEmails = array();
 
-            // Add domain
-            $domain = $this->getDomainFromEmail($emailTo);
-            if ($domain) {
-                $itemsToCheck[] = $this->getDomainFromEmail($emailTo);
+        foreach ($emailsTo as $emailKey => $emailToCheck) {
+            $emailDomain = $this->getDomainFromEmail($emailToCheck);
+
+            /** @var Hackathon_MailGuard_Model_Resource_Address_Collection $emailCollection */
+            $emailCollection = Mage::getModel('hackathon_mailguard/address')->getCollection();
+            $emailCollection
+                ->addFieldToFilter('mailaddress', array('like' => '%' . $emailDomain . '%'))
+                ->addFieldToFilter('type', Mage::getStoreConfig('hackathon_mailguard/settings/type'));
+
+            /** @var Hackathon_MailGuard_Model_Address $possibleEmailMatch */
+            foreach ($emailCollection as $possibleEmailMatch) {
+                if (
+                ($emailToCheck == $possibleEmailMatch->getMailaddress()
+                    || $emailDomain == $possibleEmailMatch->getMailaddress())
+                && Mage::getStoreConfig('hackathon_mailguard/settings/type') == Hackathon_MailGuard_Helper_Data::TYPE_WHITELIST
+                ) {
+                    $validatedEmails[] = $emailToCheck;
+                } else if (Mage::getStoreConfig('hackathon_mailguard/settings/type') == Hackathon_MailGuard_Helper_Data::TYPE_BLACKLIST
+                && ($emailToCheck != $possibleEmailMatch->getMailaddress()
+                        && $emailDomain != $possibleEmailMatch->getMailaddress())) {
+                    $validatedEmails[] = $emailToCheck;
+                }
             }
         }
 
-        // TODO: Check all items if we need to remove an item then we can simply change the
-        $itemsToCheck = array_unique($itemsToCheck);
+        if (!empty($validatedEmails)) {
+            if ($email instanceof Mage_Core_Model_Email_Template) {
+                $email->setValidatedEmails($validatedEmails);
+            } else {
+                $email->setToEmail($validatedEmails);
+            }
 
-        $email->setValidatedEmails($emailsTo);
-
+            return true;
+        }
+        return false;
 		//$this->setFilter(Hackathon_MailGuard_Helper_Data::TYPE_WHITELIST)
 		//$this->setFilter(Hackathon_MailGuard_Helper_Data::TYPE_BLACKLIST)
     }
