@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <Hackathon_MailGuard>
+            <version>0.0.1</version>
+        </Hackathon_MailGuard>
+    </modules>
+    <global>
+        <models>
+            <hackathon_mailguard>
+                <class>Hackathon_MailGuard_Model</class>
+                <resourceModel>hackathon_mailguard_resource</resourceModel>
+            </hackathon_mailguard>
+            <hackathon_mailguard_resource>
+                <class>Hackathon_MailGuard_Model_Resource</class>
+            </hackathon_mailguard_resource>
+        </models>
+        <blocks>
+            <hackathon_mailguard>
+                <class>Hackathon_MailGuard_Block</class>
+            </hackathon_mailguard>
+        </blocks>
+        <helpers>
+            <hackathon_mailguard>
+                <class>Hackathon_MailGuard_Helper</class>
+            </hackathon_mailguard>
+        </helpers>
+    </global>
+</config>

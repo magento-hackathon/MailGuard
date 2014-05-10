@@ -1,1 +1,2 @@
- 
+src/app/code/community/Hackathon/MailGuard/ app/code/community/Hackathon/MailGuard/
+src/app/etc/modules/Hackathon_MailGuard.xml app/etc/modules/Hackathon_MailGuard.xml
