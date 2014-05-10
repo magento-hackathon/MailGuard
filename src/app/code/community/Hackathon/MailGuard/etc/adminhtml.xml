@@ -13,10 +13,37 @@
                                     </hackathon_mailguard>
                                 </children>
                             </config>
+                            <hackathon_mailguard translate="title" module="hackathon_mailguard">
+                                <sort_order>60</sort_order>
+                                <title>Mail Guard</title>
+                                <children>
+                                    <addresses translate="title" module="hackathon_mailguard">
+                                        <sort_order>10</sort_order>
+                                        <title>Addresses</title>
+                                    </addresses>
+                                </children>
+                            </hackathon_mailguard>
                         </children>
                     </system>
                 </children>
             </admin>
         </resources>
     </acl>
+    <menu>
+        <system>
+            <children>
+                <hackathon_mailguard translate="title" module="hackathon_mailguard">
+                    <sort_order>60</sort_order>
+                    <title>Mail Guard</title>
+                    <children>
+                        <addresses translate="title" module="hackathon_mailguard">
+                            <sort_order>10</sort_order>
+                            <title>Addresses</title>
+                            <action>adminhtml/system_hackathon_mailGuard_address</action>
+                        </addresses>
+                    </children>
+                </hackathon_mailguard>
+            </children>
+        </system>
+    </menu>
 </adminhtml>

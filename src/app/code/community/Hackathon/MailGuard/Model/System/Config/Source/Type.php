@@ -9,6 +9,15 @@ class Hackathon_MailGuard_Model_System_Config_Source_Type
      */
     protected $_options;
 
+    public function getOptionArray()
+    {
+        $helper = Mage::helper('hackathon_mailguard');
+        return array(
+            $helper::TYPE_WHITELIST => $helper->__('Whitelist'),
+            $helper::TYPE_BLACKLIST => $helper->__('Blacklist')
+        );
+    }
+
     /**
      * Create an array with all the allowed list types
      *

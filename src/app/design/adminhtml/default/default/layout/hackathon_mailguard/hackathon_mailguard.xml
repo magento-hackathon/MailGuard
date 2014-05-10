@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<layout>
+    <adminhtml_system_hackathon_mailguard_address_index>
+        <reference name="content">
+            <block type="hackathon_mailguard/adminhtml_address" name="hackathon_mailguard_address" />
+        </reference>
+    </adminhtml_system_hackathon_mailguard_address_index>
+</layout>
