@@ -38,4 +38,13 @@
             </hackathon_mailguard_setup>
         </resources>
     </global>
+    <default>
+        <hackathon_mailguard>
+            <settings>
+                <active>0</active>
+                <type>0</type>
+                <logging>0</logging>
+            </settings>
+        </hackathon_mailguard>
+    </default>
 </config>
