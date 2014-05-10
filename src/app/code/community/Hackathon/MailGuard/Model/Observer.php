@@ -45,5 +45,17 @@ class Hackathon_MailGuard_Model_Observer {
         if(!$mailGuard->canSend($email)) {
             $email->setDoNotSend(TRUE);
         }
+		$email->setFilter($mailGuard->getFilter());
+		$email->setFilterName($mailGuard->getFilterName());
     }
+    /**
+     *
+     * @param Varien_Event_Observer $observer
+     */
+    public function emailSendAfter(Varien_Event_Observer $observer)
+    {
+    	if($this->getDoNotSend()) {
+    		
+    	}
+	}	
 }

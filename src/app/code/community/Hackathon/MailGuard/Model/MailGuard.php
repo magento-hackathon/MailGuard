@@ -31,13 +31,44 @@
  */
 class Hackathon_MailGuard_Model_MailGuard extends Mage_Core_Model_Abstract
 {
-
+	const EMAIL_FILTER_WHITELIST 	= "WHITELIST";
+	const EMAIL_FILTER_BLACKLIST 	= "BLACKLIST";
+	
+	var $_filter = null;
+	
     /**
      * detemines if the mail can be sent, and sets a property to prevent sending if appropriate
      * @param Varien_Object $email
      */
     public function canSend(Varien_Object $email)
     {
-
+		//$this->setFilter(Hackathon_MailGuard_Helper_Data::TYPE_WHITELIST)
+		//$this->setFilter(Hackathon_MailGuard_Helper_Data::TYPE_BLACKLIST)
+    }
+	
+	
+	/**
+     * sets the applied filter
+	 * @param int $filter
+     */
+    public function setFilter($filter)
+    {
+		$this->_filter = $filter;
+    }
+	
+	/**
+     * returns the applied filter
+     */
+    public function getFilter()
+    {
+		return $this->_filter;
+    }	
+		
+	/**
+     * returns the applied filter name
+     */
+    public function getFilterName()
+    {
+		return $this->getFilter()==Hackathon_MailGuard_Helper_Data::TYPE_WHITELIST ? self::EMAIL_FILTER_WHITELIST : self::EMAIL_FILTER_BLACKLIST;
     }
 }
