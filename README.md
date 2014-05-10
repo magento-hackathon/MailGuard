@@ -42,11 +42,11 @@ Installation Instructions
 
 Contributors
 ---------
-Andre Flitsch
-David Manners (@mannersd)
-Andreas Penz
-Anna Völkl (@rescueAnn)
-Matthias Zeis (@mzeis)
+* Andre Flitsch
+* David Manners (@mannersd)
+* Andreas Penz
+* Anna Völkl (@rescueAnn)
+* Matthias Zeis (@mzeis)
 
 License
 -------
