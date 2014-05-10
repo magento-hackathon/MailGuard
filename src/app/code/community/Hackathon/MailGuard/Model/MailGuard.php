@@ -55,18 +55,28 @@ class Hackathon_MailGuard_Model_MailGuard extends Mage_Core_Model_Abstract
                 ->addFieldToFilter('type', Mage::getStoreConfig('hackathon_mailguard/settings/type'));
 
             /** @var Hackathon_MailGuard_Model_Address $possibleEmailMatch */
-            foreach ($emailCollection as $possibleEmailMatch) {
-                if (
-                ($emailToCheck == $possibleEmailMatch->getMailaddress()
-                    || $emailDomain == $possibleEmailMatch->getMailaddress())
-                && Mage::getStoreConfig('hackathon_mailguard/settings/type') == Hackathon_MailGuard_Helper_Data::TYPE_WHITELIST
-                ) {
-                    $validatedEmails[] = $emailToCheck;
-                } else if (Mage::getStoreConfig('hackathon_mailguard/settings/type') == Hackathon_MailGuard_Helper_Data::TYPE_BLACKLIST
-                && ($emailToCheck != $possibleEmailMatch->getMailaddress()
-                        && $emailDomain != $possibleEmailMatch->getMailaddress())) {
-                    $validatedEmails[] = $emailToCheck;
+            if ($emailCollection->getSize() > 0) {
+                foreach ($emailCollection as $possibleEmailMatch) {
+                    if (
+                        (
+                            $emailToCheck == $possibleEmailMatch->getMailaddress()
+                            || $emailDomain == $possibleEmailMatch->getMailaddress()
+                        )
+                        && Mage::getStoreConfig('hackathon_mailguard/settings/type') == Hackathon_MailGuard_Helper_Data::TYPE_WHITELIST
+                    ) {
+                        $validatedEmails[] = $emailToCheck;
+                    } else if (
+                        Mage::getStoreConfig('hackathon_mailguard/settings/type') == Hackathon_MailGuard_Helper_Data::TYPE_BLACKLIST
+                        && !(
+                            $emailToCheck == $possibleEmailMatch->getMailaddress()
+                            || $emailDomain == $possibleEmailMatch->getMailaddress()
+                        )
+                    ) {
+                        $validatedEmails[] = $emailToCheck;
+                    }
                 }
+            } else {
+                $validatedEmails[] = $emailToCheck;
             }
         }
 
