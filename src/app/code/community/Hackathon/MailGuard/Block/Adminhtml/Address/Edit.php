@@ -2,6 +2,8 @@
 
 class Hackathon_MailGuard_Block_Adminhtml_Address_Edit extends Mage_Adminhtml_Block_Widget_Form_Container
 {
+    protected $_objectId = 'address_id';
+
     public function __construct()
     {
         $this->_blockGroup = 'hackathon_mailguard';

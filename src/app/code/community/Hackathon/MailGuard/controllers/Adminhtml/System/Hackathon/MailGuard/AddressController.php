@@ -12,6 +12,27 @@ class Hackathon_MailGuard_Adminhtml_System_Hackathon_MailGuard_AddressController
         $this->_forward('edit');
     }
 
+    public function deleteAction()
+    {
+        if ($id = $this->getRequest()->getParam('address_id')) {
+            try {
+                $model = Mage::getModel('hackathon_mailguard/address');
+                $model->setId($id);
+                $model->delete();
+                Mage::getSingleton('adminhtml/session')->addSuccess(Mage::helper('hackathon_mailguard')->__('The address has been deleted.'));
+                $this->_redirect('*/*/');
+                return;
+            }
+            catch (Exception $e) {
+                Mage::getSingleton('adminhtml/session')->addError($e->getMessage());
+                $this->_redirect('*/*/edit', array('address_id' => $this->getRequest()->getParam('address_id')));
+                return;
+            }
+        }
+        Mage::getSingleton('adminhtml/session')->addError(Mage::helper('adminhtml')->__('Unable to find the address  to delete.'));
+        $this->_redirect('*/*/');
+    }
+
     public function editAction()
     {
         $this->_initAction();
