@@ -22,7 +22,6 @@
  */
 
 /**
- * Short description of the class
  *
  *
  * @category   Hackathon
@@ -33,6 +32,7 @@
 class Hackathon_MailGuard_Model_Observer {
 
     /**
+     * event observer called before emails are sent
      *
      * @param Varien_Event_Observer $observer
      */
@@ -51,6 +51,7 @@ class Hackathon_MailGuard_Model_Observer {
 		$email->setFilterName($mailGuard->getFilterName());
     }
     /**
+     * event observer called after emails are sent
      *
      * @param Varien_Event_Observer $observer
      */
@@ -60,5 +61,5 @@ class Hackathon_MailGuard_Model_Observer {
     	if($email->getDoNotSend()) {
     		Mage::log($email->getFilterName(), null, 'mailguard.log');
     	}
-	}	
+	}
 }
