@@ -5,6 +5,26 @@
             <version>0.0.1</version>
         </Hackathon_MailGuard>
     </modules>
+    <admin>
+        <routers>
+            <adminhtml>
+                <args>
+                    <modules>
+                        <Hackathon_MailGuard before="Mage_Adminhtml">Hackathon_MailGuard_Adminhtml</Hackathon_MailGuard>
+                    </modules>
+                </args>
+            </adminhtml>
+        </routers>
+    </admin>
+    <adminhtml>
+        <layout>
+            <updates>
+                <hackathon_mailguard>
+                    <file>hackathon_mailguard/hackathon_mailguard.xml</file>
+                </hackathon_mailguard>
+            </updates>
+        </layout>
+    </adminhtml>
     <global>
         <models>
             <hackathon_mailguard>

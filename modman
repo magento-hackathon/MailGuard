@@ -1,2 +1,3 @@
 src/app/code/community/Hackathon/MailGuard/ app/code/community/Hackathon/MailGuard/
+src/app/design/adminhtml/default/default/layout/hackathon_mailguard/hackathon_mailguard.xml app/design/adminhtml/default/default/layout/hackathon_mailguard/hackathon_mailguard.xml
 src/app/etc/modules/Hackathon_MailGuard.xml app/etc/modules/Hackathon_MailGuard.xml
