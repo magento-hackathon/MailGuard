@@ -63,6 +63,10 @@ class Hackathon_MailGuard_Model_MailGuard extends Mage_Core_Model_Abstract
             $validatedCc = $this->checkAddresses(self::MAIL_HEADER_CC);
         }
 
+        if (!is_array($emailsTo)) {
+            $emailsTo = array($emailsTo);
+        }
+
         $this->_addresses['Recipients'] = $emailsTo;
 
         $validatedRecipients = $this->checkAddresses('Recipients');
