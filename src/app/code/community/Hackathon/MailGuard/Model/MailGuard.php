@@ -101,6 +101,7 @@ class Hackathon_MailGuard_Model_MailGuard extends Mage_Core_Model_Abstract
 
     /**
      * extract the domain part from the incoming email address
+     *  - including the @ symbol
      *
      * @param $email
      *
