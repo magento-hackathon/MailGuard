@@ -33,16 +33,21 @@ class Hackathon_MailGuard_Model_MailGuard extends Mage_Core_Model_Abstract
 {
 	const EMAIL_FILTER_WHITELIST 	= "WHITELIST";
 	const EMAIL_FILTER_BLACKLIST 	= "BLACKLIST";
-	
-	var $_filter = null;
-	
+
+    /**
+     * @var integer null the value of the filter being used
+     */
+    var $_filter = null;
+
     /**
      * detemines if the mail can be sent, and sets a property to prevent sending if appropriate
      * @param Varien_Object $email
      * @param array|string $emailsTo
+     * @return bool
      */
     public function canSend(Varien_Object $email, $emailsTo)
     {
+        $this->setFilter(Mage::getStoreConfig('hackathon_mailguard/settings/type'));
         $validatedEmails = array();
 
         foreach ($emailsTo as $emailKey => $emailToCheck) {
@@ -80,10 +85,15 @@ class Hackathon_MailGuard_Model_MailGuard extends Mage_Core_Model_Abstract
             return true;
         }
         return false;
-		//$this->setFilter(Hackathon_MailGuard_Helper_Data::TYPE_WHITELIST)
-		//$this->setFilter(Hackathon_MailGuard_Helper_Data::TYPE_BLACKLIST)
     }
 
+    /**
+     * extract the domain part from the incoming email address
+     *
+     * @param $email
+     *
+     * @return bool
+     */
     private function getDomainFromEmail ($email)
     {
         if (preg_match('/@(.*)$/', $email, $matches)) {
@@ -91,7 +101,7 @@ class Hackathon_MailGuard_Model_MailGuard extends Mage_Core_Model_Abstract
         }
         return false;
     }
-	
+
 	/**
      * sets the applied filter
 	 * @param int $filter
@@ -100,17 +110,20 @@ class Hackathon_MailGuard_Model_MailGuard extends Mage_Core_Model_Abstract
     {
 		$this->_filter = $filter;
     }
-	
-	/**
+
+    /**
      * returns the applied filter
+     * @return int
      */
     public function getFilter()
     {
 		return $this->_filter;
-    }	
-		
-	/**
+    }
+
+    /**
      * returns the applied filter name
+     *
+     * @return string
      */
     public function getFilterName()
     {
