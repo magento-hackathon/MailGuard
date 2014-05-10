@@ -13,6 +13,11 @@
             </hackathon_mailguard>
             <hackathon_mailguard_resource>
                 <class>Hackathon_MailGuard_Model_Resource</class>
+                <entities>
+                    <address>
+                        <table>hackathon_mailguard_address</table>
+                    </address>
+                </entities>
             </hackathon_mailguard_resource>
         </models>
         <blocks>
@@ -25,5 +30,21 @@
                 <class>Hackathon_MailGuard_Helper</class>
             </hackathon_mailguard>
         </helpers>
+        <resources>
+            <hackathon_mailguard_setup>
+                <setup>
+                    <module>Hackathon_MailGuard</module>
+                </setup>
+            </hackathon_mailguard_setup>
+        </resources>
     </global>
+    <default>
+        <hackathon_mailguard>
+            <settings>
+                <active>0</active>
+                <type>0</type>
+                <logging>0</logging>
+            </settings>
+        </hackathon_mailguard>
+    </default>
 </config>

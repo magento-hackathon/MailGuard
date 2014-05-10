@@ -1,0 +1,62 @@
+<?xml version="1.0"?>
+<config>
+    <tabs>
+        <hackathon_mailguard translate="label" module="hackathon_mailguard">
+            <label>Mail Guard</label>
+            <sort_order>999</sort_order>
+        </hackathon_mailguard>
+    </tabs>
+    <sections>
+        <hackathon_mailguard translate="label" module="hackathon_mailguard">
+            <label>General Settings</label>
+            <tab>hackathon_mailguard</tab>
+            <frontend_type>text</frontend_type>
+            <sort_order>990</sort_order>
+            <show_in_default>1</show_in_default>
+            <show_in_website>1</show_in_website>
+            <show_in_store>1</show_in_store>
+            <groups>
+                <settings translate="label">
+                    <label>General Settings</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>1</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <active translate="label,comment">
+                            <label>Enable Mail Guard</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>1</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment><![CDATA[Enable or disable extension.]]></comment>
+                        </active>
+                        <type translate="label comment">
+                            <label>Type of list</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>hackathon_mailguard/system_config_source_type</source_model>
+                            <sort_order>2</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment><![CDATA[Select which type of list you want.]]></comment>
+                        </type>
+                        <logging translate="label,comment">
+                            <label>Enable Mail Logging</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>3</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment><![CDATA[Enable or disable logging in Mail Guard.]]></comment>
+                        </logging>
+                    </fields>
+                </settings>
+            </groups>
+        </hackathon_mailguard>
+    </sections>
+</config>

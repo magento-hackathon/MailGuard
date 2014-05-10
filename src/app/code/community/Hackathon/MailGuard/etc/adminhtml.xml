@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<adminhtml>
+    <acl>
+        <resources>
+            <admin>
+                <children>
+                    <system>
+                        <children>
+                            <config>
+                                <children>
+                                    <hackathon_mailguard translate="title" module="hackathon_mailguard">
+                                        <title>Mail Guard Settings</title>
+                                    </hackathon_mailguard>
+                                </children>
+                            </config>
+                        </children>
+                    </system>
+                </children>
+            </admin>
+        </resources>
+    </acl>
+</adminhtml>
