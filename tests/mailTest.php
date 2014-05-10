@@ -11,8 +11,7 @@
 require_once 'app/Mage.php';
 Mage::app();
 
-$emails = array('a.voelkl@limesoda.com');
-//, 'andreas.penz@icc.at','andre@pixelperfect.at','dmanners87@gmail.com','admin@matthias-zeis.com');
+$emails = array('a.voelkl@limesoda.com', 'andreas.penz@icc.at','andre@pixelperfect.at','dmanners87@gmail.com','admin@matthias-zeis.com');
 
 // core/email
 foreach($emails as $email) {
@@ -22,7 +21,6 @@ foreach($emails as $email) {
 	            ->setToEmail($email)
 	            ->send();
 }
-echo "core/email sent";
 			
 // core/email_template			
 /* @var $emailModel Mage_Core_Model_Email_Template */
@@ -37,5 +35,5 @@ foreach ($emails as $email) {
     );
 }
 
-echo "core/email_template sent";
+echo "emails sent";
 ?>
