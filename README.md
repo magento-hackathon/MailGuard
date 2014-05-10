@@ -42,7 +42,7 @@ Installation Instructions
 
 Contributors
 ---------
-Andre Flitsch
+Andre Flitsch (@andreflitsch)
 David Manners (@mannersd)
 Andreas Penz
 Anna Völkl (@rescueAnn)
