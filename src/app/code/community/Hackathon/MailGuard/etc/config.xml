@@ -5,6 +5,13 @@
             <version>0.0.1</version>
         </Hackathon_MailGuard>
     </modules>
+    <phpunit>
+        <suite>
+            <modules>
+                <Icc_RemoveCustomerAccount />
+            </modules>
+        </suite>
+    </phpunit>
     <admin>
         <routers>
             <adminhtml>
