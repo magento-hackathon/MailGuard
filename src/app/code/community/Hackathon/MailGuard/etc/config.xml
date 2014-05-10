@@ -48,7 +48,7 @@
                 <observers>
                     <hackathon_mailguard>
                         <class>hackathon_mailguard/observer</class>
-                        <method>emailTemplateSendBefore</method>
+                        <method>emailSendBefore</method>
                     </hackathon_mailguard>
                 </observers>
             </email_template_send_before>
@@ -56,7 +56,7 @@
                 <observers>
                     <hackathon_mailguard>
                         <class>hackathon_mailguard/observer</class>
-                        <method>emailTemplateSendBefore</method>
+                        <method>emailSendBefore</method>
                     </hackathon_mailguard>
                 </observers>
             </email_send_before>

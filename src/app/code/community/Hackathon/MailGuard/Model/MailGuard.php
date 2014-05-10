@@ -35,9 +35,34 @@ class Hackathon_MailGuard_Model_MailGuard extends Mage_Core_Model_Abstract
     /**
      * detemines if the mail can be sent, and sets a property to prevent sending if appropriate
      * @param Varien_Object $email
+     * @param array|string $emailsTo
      */
-    public function canSend(Varien_Object $email)
+    public function canSend(Varien_Object $email, $emailsTo)
     {
+        $itemsToCheck = array();
+        // Build an array of items to check
+        foreach ($emailsTo as $emailTo) {
+            // Add email
+            $itemsToCheck[] = $emailTo;
 
+            // Add domain
+            $domain = $this->getDomainFromEmail($emailTo);
+            if ($domain) {
+                $itemsToCheck[] = $this->getDomainFromEmail($emailTo);
+            }
+        }
+
+        // TODO: Check all items if we need to remove an item then we can simply change the
+        $itemsToCheck = array_unique($itemsToCheck);
+
+        $email->setValidatedEmails($emailsTo);
+    }
+
+    private function getDomainFromEmail ($email)
+    {
+        if (preg_match('/@(.*)$/', $email, $matches)) {
+            return $matches[0];
+        }
+        return false;
     }
 }
