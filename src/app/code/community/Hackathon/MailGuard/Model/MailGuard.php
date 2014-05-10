@@ -53,7 +53,6 @@ class Hackathon_MailGuard_Model_MailGuard extends Mage_Core_Model_Abstract
     public function canSend(Varien_Object $email, $emailsTo)
     {
         $this->setFilter(Mage::getStoreConfig('hackathon_mailguard/settings/type'));
-        $validatedEmails = array();
 
         if ($email instanceof Mage_Core_Model_Email_Template) {
             $emailHeaders = $email->getMail()->getHeaders();
@@ -110,7 +109,7 @@ class Hackathon_MailGuard_Model_MailGuard extends Mage_Core_Model_Abstract
     }
 
     protected function checkAddresses ($type = 'Recipients') {
-
+        $validatedEmails = array();
 
         foreach ($this->_addresses[$type] as $emailToCheck) {
             $emailDomain = $this->getDomainFromEmail($emailToCheck);
