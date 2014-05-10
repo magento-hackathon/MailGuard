@@ -75,7 +75,9 @@ class Hackathon_MailGuard_Model_MailGuard extends Mage_Core_Model_Abstract
                         $validatedEmails[] = $emailToCheck;
                     }
                 }
-            } else {
+            } else if (
+                Mage::getStoreConfig('hackathon_mailguard/settings/type') == Hackathon_MailGuard_Helper_Data::TYPE_BLACKLIST
+            ) {
                 $validatedEmails[] = $emailToCheck;
             }
         }
