@@ -50,7 +50,7 @@ class Hackathon_MailGuard_Model_MailGuard extends Mage_Core_Model_Abstract
         $this->setFilter(Mage::getStoreConfig('hackathon_mailguard/settings/type'));
         $validatedEmails = array();
 
-        foreach ($emailsTo as $emailKey => $emailToCheck) {
+        foreach ($emailsTo as $emailToCheck) {
             $emailDomain = $this->getDomainFromEmail($emailToCheck);
 
             /** @var Hackathon_MailGuard_Model_Resource_Address_Collection $emailCollection */

@@ -5,7 +5,8 @@
     "description": "Blacklist and whitelist mail addresses when sending Magento E-Mails",
     "authors": [
         {
-            "name": "Andre Flitsch"
+            "name": "Andre Flitsch",
+            "email": "andre@pixelperfect.at"
         },
         {
             "name": "Andreas Penz",
