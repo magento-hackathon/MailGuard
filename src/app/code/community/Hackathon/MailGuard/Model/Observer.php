@@ -39,7 +39,6 @@ class Hackathon_MailGuard_Model_Observer {
     public function emailSendBefore(Varien_Event_Observer $observer)
     {
         $email = $observer->getEmail();
-        die(get_class($email));
         $emailTo = $observer->getEmailTo();
 
         /** @var Hackathon_MailGuard_Model_MailGuard $mailGuard */
