@@ -11,8 +11,8 @@
  * DISCLAIMER
  *
  * Do not edit or add to this file if you wish to upgrade
- * the Pixelperfect DasGastroPortal module to newer versions in the future.
- * If you wish to customize the Pixelperfect DasGastroPortal module for your needs
+ * the Hackathon MailGuard module to newer versions in the future.
+ * If you wish to customize the Hackathon MailGuard module for your needs
  * please refer to http://www.magentocommerce.com for more information.
  *
  * @category   Hackathon

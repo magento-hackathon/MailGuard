@@ -11,8 +11,8 @@
  * DISCLAIMER
  *
  * Do not edit or add to this file if you wish to upgrade
- * the Pixelperfect DasGastroPortal module to newer versions in the future.
- * If you wish to customize the Pixelperfect DasGastroPortal module for your needs
+ * the Hackathon MailGuard module to newer versions in the future.
+ * If you wish to customize the Hackathon MailGuard module for your needs
  * please refer to http://www.magentocommerce.com for more information.
  *
  * @category   Hackathon
@@ -32,12 +32,18 @@
 
 class Hackathon_MailGuard_Model_Observer {
 
-    public function emailTemplateSendBefore(Varien_Event_Observer $observer)
+    /**
+     *
+     * @param Varien_Event_Observer $observer
+     */
+    public function emailSendBefore(Varien_Event_Observer $observer)
     {
         $email = $observer->getEmail();
 
         $mailGuard = Mage::getModel('hackathon_mailguard/mailGuard');
 
-        if($mailGuard)
+        if(!$mailGuard->canSend($email)) {
+            $email->setDoNotSend(TRUE);
+        }
     }
 }
