@@ -1,0 +1,27 @@
+{
+    "name": "hackathon/mail-guard",
+    "type": "magento-module",
+    "license": "OSL-3.0",
+    "description": "Blacklist and whitelist mail addresses when sending Magento E-Mails",
+    "authors": [
+        {
+            "name": "Andre Flitsch"
+        },
+        {
+            "name": "Andreas Penz"
+        },
+        {
+            "name": "Anna Völkl"
+        },
+        {
+            "name": "David Manners"
+        },
+        {
+            "name": "Matthias Zeis",
+            "email": "admin@matthias-zeis.com"
+        }
+    ],
+    "require": {
+        "magento-hackathon/magento-composer-installer": "*"
+    }
+}
