@@ -54,8 +54,9 @@ class Hackathon_MailGuard_Model_Observer {
      */
     public function emailSendAfter(Varien_Event_Observer $observer)
     {
-    	if($this->getDoNotSend()) {
-    		
+    	$email = $observer->getEmail();
+    	if($email->getDoNotSend()) {
+    		Mage::log($email->getFilterName(), null, 'mailguard.log');
     	}
 	}	
 }
