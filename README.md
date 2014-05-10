@@ -29,7 +29,7 @@ Features:
 Future work
 -------------
 * CSV Upload for E-Mail Adresses and Domains
-* Check if e-mail adress does really exist (by checking mailbox etc.)
+* Check if e-mail adress does really exist (by checking mailbox etc.) [phpclasses.org](http://www.phpclasses.org/package/13-PHP-Determine-if-a-given-e-mail-address-is-valid-.html)
 * Regex-Support
 
 Compatibility
