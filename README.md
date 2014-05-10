@@ -21,6 +21,7 @@ Rewrites Mage_Core_Model_Email and Mage_Core_Email_Template to add e-mail sendin
 
 Features:
 * Block sending e-mails depending on Domainname or full e-mail address
+--* When working with domainname it must start with @ e.g. @example.com
 * System Configuration:
 --* Enable/Disable Module
 --* Select Mode: Blacklist or Whitelist
