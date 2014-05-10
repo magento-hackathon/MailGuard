@@ -66,6 +66,28 @@ class Hackathon_MailGuard_Adminhtml_System_Hackathon_MailGuard_AddressController
             ->renderLayout();
     }
 
+    /**
+     * Export customer grid to CSV format
+     */
+    public function exportCsvAction()
+    {
+        $fileName   = 'addresses.csv';
+        $content    = $this->getLayout()->createBlock('hackathon_mailguard/adminhtml_address_grid')->getCsvFile();
+
+        $this->_prepareDownloadResponse($fileName, $content);
+    }
+
+    /**
+     * Export customer grid to XML format
+     */
+    public function exportXmlAction()
+    {
+        $fileName   = 'addresses.xml';
+        $content    = $this->getLayout()->createBlock('hackathon_mailguard/adminhtml_address_grid')->getExcelFile();
+
+        $this->_prepareDownloadResponse($fileName, $content);
+    }
+
     public function massDeleteAction()
     {
         $ids = $this->getRequest()->getParam('address_id');
