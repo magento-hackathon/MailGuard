@@ -55,6 +55,18 @@ class Hackathon_MailGuard_Block_Adminhtml_Address_Grid extends Mage_Adminhtml_Bl
         return parent::_prepareColumns();
     }
 
+    protected function _prepareMassaction()
+    {
+        $this->setMassactionIdField('hackathon_mailguard_address_id');
+        $this->getMassactionBlock()->setFormFieldName('address_id');
+        $this->getMassactionBlock()->addItem('delete', array(
+            'label' => Mage::helper('hackathon_mailguard')->__('Delete'),
+            'url' => $this->getUrl('*/*/massDelete', array('_current'=>true)),
+            'confirm' => Mage::helper('hackathon_mailguard')->__('Are you sure?')
+        ));
+        return $this;
+    }
+
     public function getRowUrl($row)
     {
         return $this->getUrl('*/*/edit', array('address_id' => $row->getId()));

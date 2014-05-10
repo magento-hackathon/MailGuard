@@ -66,6 +66,29 @@ class Hackathon_MailGuard_Adminhtml_System_Hackathon_MailGuard_AddressController
             ->renderLayout();
     }
 
+    public function massDeleteAction()
+    {
+        $ids = $this->getRequest()->getParam('address_id');
+        if (!is_array($ids)) {
+            $this->_getSession()->addError($this->__('Please select address(es).'));
+        } else {
+            if (!empty($ids)) {
+                try {
+                    foreach ($ids as $id) {
+                        $address = Mage::getSingleton('hackathon_mailguard/address')->load($id);
+                        $address->delete();
+                    }
+                    $this->_getSession()->addSuccess(
+                        $this->__('Total of %d record(s) have been deleted.', count($ids))
+                    );
+                } catch (Exception $e) {
+                    $this->_getSession()->addError($e->getMessage());
+                }
+            }
+        }
+        $this->_redirect('*/*/index');
+    }
+
     public function saveAction()
     {
         if ($postData = $this->getRequest()->getPost()) {
