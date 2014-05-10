@@ -52,6 +52,8 @@ class Hackathon_MailGuard_Block_Adminhtml_Address_Grid extends Mage_Adminhtml_Bl
             )
         );
 
+        $this->addExportType('*/*/exportCsv', Mage::helper('hackathon_mailguard')->__('CSV'));
+        $this->addExportType('*/*/exportXml', Mage::helper('hackathon_mailguard')->__('Excel XML'));
         return parent::_prepareColumns();
     }
 
