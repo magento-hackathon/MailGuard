@@ -14,6 +14,12 @@
             <hackathon_mailguard_resource>
                 <class>Hackathon_MailGuard_Model_Resource</class>
             </hackathon_mailguard_resource>
+            <core>
+                <rewrite>
+                    <email>Hackathon_MailGuard_Model_Core_Email</email>
+                    <email_template>Hackathon_MailGuard_Model_Core_Email_Template</email_template>
+                </rewrite>
+            </core>
         </models>
         <blocks>
             <hackathon_mailguard>
@@ -25,5 +31,15 @@
                 <class>Hackathon_MailGuard_Helper</class>
             </hackathon_mailguard>
         </helpers>
+        <events>
+            <email_template_send_before>
+                <observers>
+                    <hackathon_mailguard>
+                        <class>hackathon_mailguard/observer</class>
+                        <method>emailTemplateSendBefore</method>
+                    </hackathon_mailguard>
+                </observers>
+            </email_template_send_before>
+        </events>
     </global>
 </config>
