@@ -30,7 +30,7 @@
  */
 
 class Hackathon_MailGuard_Model_Observer {
-
+    const LOGGING_ENABLED = 1;
     /**
      * event observer called before emails are sent
      *
@@ -59,18 +59,20 @@ class Hackathon_MailGuard_Model_Observer {
      */
     public function emailSendAfter(Varien_Event_Observer $observer)
     {
-    	$email = $observer->getEmail();
-		$email_to = $observer->getEmailTo();
+        if(Mage::getStoreConfig('hackathon_mailguard/settings/logging') == self::LOGGING_ENABLED) {
+            $email = $observer->getEmail();
+            $email_to = $observer->getEmailTo();
 
-        if(!is_array($email_to)) {
-            $email_to = array($email_to);
+            if(!is_array($email_to)) {
+                $email_to = array($email_to);
+            }
+
+            if($email->getDoNotSend()) {
+                Mage::log($email->getFilterName().
+                        ", ".implode(", ",$email_to),
+                        null,
+                        'mailguard.log');
+            }
         }
-
-    	if($email->getDoNotSend()) {
-    		Mage::log($email->getFilterName().
-    				", ".implode(", ",$email_to), 
-    				null, 
-    				'mailguard.log');
-    	}
 	}
 }
