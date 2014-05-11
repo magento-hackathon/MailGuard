@@ -56,10 +56,14 @@ class Hackathon_MailGuard_Model_MailGuard extends Mage_Core_Model_Abstract
 
         if ($email instanceof Mage_Core_Model_Email_Template) {
             $emailHeaders = $email->getMail()->getHeaders();
-            $this->_addresses[self::MAIL_HEADER_BCC] = $emailHeaders[self::MAIL_HEADER_BCC];
-            $this->_addresses[self::MAIL_HEADER_CC] = $emailHeaders[self::MAIL_HEADER_CC];
-            $validatedBcc = $this->checkAddresses(self::MAIL_HEADER_BCC);
-            $validatedCc = $this->checkAddresses(self::MAIL_HEADER_CC);
+            if (isset($emailHeaders[self::MAIL_HEADER_BCC])) {
+                $this->_addresses[self::MAIL_HEADER_BCC] = $emailHeaders[self::MAIL_HEADER_BCC];
+                $validatedBcc = $this->checkAddresses(self::MAIL_HEADER_BCC);
+            }
+            if (isset($emailHeaders[self::MAIL_HEADER_CC])) {
+                $this->_addresses[self::MAIL_HEADER_CC] = $emailHeaders[self::MAIL_HEADER_CC];
+                $validatedCc = $this->checkAddresses(self::MAIL_HEADER_CC);
+            }
         }
 
         if (!is_array($emailsTo)) {
@@ -70,12 +74,15 @@ class Hackathon_MailGuard_Model_MailGuard extends Mage_Core_Model_Abstract
 
         $validatedRecipients = $this->checkAddresses('Recipients');
 
-
         if (!empty($validatedRecipients)) {
             if ($email instanceof Mage_Core_Model_Email_Template) {
 
-                $this->changeMailHeaders($email->getMail(), $validatedBcc, self::MAIL_HEADER_BCC);
-                $this->changeMailHeaders($email->getMail(), $validatedCc, self::MAIL_HEADER_CC);
+                if (isset($validatedBcc)) {
+                    $this->changeMailHeaders($email->getMail(), $validatedBcc, self::MAIL_HEADER_BCC);
+                }
+                if (isset($validatedCc)) {
+                    $this->changeMailHeaders($email->getMail(), $validatedCc, self::MAIL_HEADER_CC);
+                }
 
                 $email->setValidatedEmails($validatedRecipients);
             } else {
