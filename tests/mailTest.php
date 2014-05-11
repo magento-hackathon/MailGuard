@@ -8,7 +8,7 @@
  * @author     Anna Völkl <a.voelkl@limesoda.com>
  */
 
-die('uncomment this line and set testing e-mail addresses in this file');
+//die('uncomment this line and set testing e-mail addresses in this file');
 $emails = array('anna@vape.net');// 'andreas.penz@icc.at','andre@pixelperfect.at','dmanners87@gmail.com','admin@matthias-zeis.com');
 
 require_once 'app/Mage.php';
@@ -33,12 +33,11 @@ $emailModel = Mage::getModel('core/email_template');
 
 foreach ($emails as $email) {
     $template = Mage::getStoreConfig('checkout/payment_failed/template', 0);
-    $emailModel->setDesignConfig(array('area'=>'frontend', 'store'=>0))
-        ->sendTransactional(
-            $template,
-            Mage::getStoreConfig('checkout/payment_failed/identity', 0),
-            "core email template",
+        $emailModel->sendTransactional(
+            Mage::getStoreConfig('wishlist/email/email_template'),
+            Mage::getStoreConfig('wishlist/email/email_identity'),
             $email,
+            null,
             null
         );
 }
