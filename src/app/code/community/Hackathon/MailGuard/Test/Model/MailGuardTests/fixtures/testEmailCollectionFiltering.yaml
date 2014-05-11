@@ -1,0 +1,7 @@
+config:
+  default/hackathon_mailguard/settings/type: 1
+tables:
+  hackathon_mailguard/address:
+    - address_id: 1
+      mailaddress: example@example.com
+      type: 1
