@@ -153,7 +153,7 @@ class Hackathon_MailGuard_Model_Import_Entity_Address extends Mage_ImportExport_
      */
     public function __construct()
     {
-        $this->_connection      = Mage::getSingleton('core/resource')->getConnection('write');
+        $this->_connection = Mage::getSingleton('core/resource')->getConnection('write');
         $this->_entityTable = Mage::getModel('hackathon_mailguard/address')->getResource()->getEntityTable();
 
         $this->_initAddresses();
