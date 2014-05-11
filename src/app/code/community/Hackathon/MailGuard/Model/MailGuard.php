@@ -34,10 +34,15 @@ class Hackathon_MailGuard_Model_MailGuard extends Mage_Core_Model_Abstract
 	const EMAIL_FILTER_WHITELIST 	= "WHITELIST";
 	const EMAIL_FILTER_BLACKLIST 	= "BLACKLIST";
 
+    const MAIL_HEADER_BCC           = 'Bcc';
+    const MAIL_HEADER_CC            = 'Cc';
+
     /**
      * @var integer null the value of the filter being used
      */
     var $_filter = null;
+
+    var $_addresses = array();
 
     /**
      * detemines if the mail can be sent, and sets a property to prevent sending if appropriate
@@ -48,9 +53,72 @@ class Hackathon_MailGuard_Model_MailGuard extends Mage_Core_Model_Abstract
     public function canSend(Varien_Object $email, $emailsTo)
     {
         $this->setFilter(Mage::getStoreConfig('hackathon_mailguard/settings/type'));
+
+        if ($email instanceof Mage_Core_Model_Email_Template) {
+            $emailHeaders = $email->getMail()->getHeaders();
+            if (isset($emailHeaders[self::MAIL_HEADER_BCC])) {
+                $this->_addresses[self::MAIL_HEADER_BCC] = $emailHeaders[self::MAIL_HEADER_BCC];
+                $validatedBcc = $this->checkAddresses(self::MAIL_HEADER_BCC);
+            }
+            if (isset($emailHeaders[self::MAIL_HEADER_CC])) {
+                $this->_addresses[self::MAIL_HEADER_CC] = $emailHeaders[self::MAIL_HEADER_CC];
+                $validatedCc = $this->checkAddresses(self::MAIL_HEADER_CC);
+            }
+        }
+
+        if (!is_array($emailsTo)) {
+            $emailsTo = array($emailsTo);
+        }
+
+        $this->_addresses['Recipients'] = $emailsTo;
+
+        $validatedRecipients = $this->checkAddresses('Recipients');
+
+        if (!empty($validatedRecipients)) {
+            if ($email instanceof Mage_Core_Model_Email_Template) {
+
+                if (isset($validatedBcc)) {
+                    $this->changeMailHeaders($email->getMail(), $validatedBcc, self::MAIL_HEADER_BCC);
+                }
+                if (isset($validatedCc)) {
+                    $this->changeMailHeaders($email->getMail(), $validatedCc, self::MAIL_HEADER_CC);
+                }
+
+                $email->setValidatedEmails($validatedRecipients);
+            } else {
+                $email->setToEmail($validatedRecipients);
+            }
+
+            return true;
+        }
+        return false;
+    }
+
+    /**
+     * change the specified header to the list of supplied addresses
+     *
+     * @param Zend_Mail $mail
+     * @param           $list
+     * @param string    $type
+     */
+    protected function changeMailHeaders(Zend_Mail $mail, $list, $type = self::MAIL_HEADER_BCC){
+        $mail->clearHeader($type);
+        if(!empty($list)){
+            switch($type){
+                case self::MAIL_HEADER_BCC:
+                    $mail->addBcc($list);
+                    break;
+                case self::MAIL_HEADER_CC:
+                    $mail->addCc($list);
+                    break;
+            }
+        }
+    }
+
+    protected function checkAddresses ($type = 'Recipients') {
         $validatedEmails = array();
 
-        foreach ($emailsTo as $emailToCheck) {
+        foreach ($this->_addresses[$type] as $emailToCheck) {
             $emailDomain = $this->getDomainFromEmail($emailToCheck);
 
             /** @var Hackathon_MailGuard_Model_Resource_Address_Collection $emailCollection */
@@ -87,20 +155,12 @@ class Hackathon_MailGuard_Model_MailGuard extends Mage_Core_Model_Abstract
             }
         }
 
-        if (!empty($validatedEmails)) {
-            if ($email instanceof Mage_Core_Model_Email_Template) {
-                $email->setValidatedEmails($validatedEmails);
-            } else {
-                $email->setToEmail($validatedEmails);
-            }
-
-            return true;
-        }
-        return false;
+        return $validatedEmails;
     }
 
     /**
      * extract the domain part from the incoming email address
+     *  - including the @ symbol
      *
      * @param $email
      *
