@@ -40,6 +40,13 @@ class Hackathon_MailGuard_Model_Resource_Address extends Mage_Core_Model_Resourc
      */
     protected $_importUniqueHash    = array();
 
+    /**
+     * Mapping of 'type' labels to internal values.
+     *
+     * @var array
+     */
+    protected $_typeValues = array();
+
     protected function _construct()
     {
         $this->_init('hackathon_mailguard/address', 'address_id');
@@ -76,6 +83,13 @@ class Hackathon_MailGuard_Model_Resource_Address extends Mage_Core_Model_Resourc
             return false;
         }
         $this->_importUniqueHash[$hash] = true;
+
+        // Translate type from label to internal value.
+        if (!in_array($type, $this->_typeValues)) {
+            $this->_importErrors[] = Mage::helper('hackathon_mailguard')->__('Error in Row #%s: expected one of these values for column "%s": %s and received value "%s".', $rowNumber, self::COL_TYPE, implode(',', $this->_typeValues), $type);
+            return false;
+        }
+        $type = array_search($type, $this->_typeValues);
 
         return array(
             $mailAddress,
@@ -119,6 +133,7 @@ class Hackathon_MailGuard_Model_Resource_Address extends Mage_Core_Model_Resourc
         $this->_importErrors = array();
         $this->_importUniqueHash = array();
         $this->_importedRows = 0;
+        $this->_typeValues = Mage::getModel('hackathon_mailguard/system_config_source_type')->getOptionArray();
 
         $io = new Varien_Io_File();
         $info = pathinfo($csvFile);

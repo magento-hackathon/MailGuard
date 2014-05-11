@@ -29,7 +29,8 @@ class Hackathon_MailGuard_Block_Adminhtml_Address_Grid extends Mage_Adminhtml_Bl
     {
         $this->addColumn('address_id',
             array(
-                'header'=> $this->__('ID'),
+                'header' => $this->__('ID'),
+                'header_export' => 'id',
                 'align' =>'right',
                 'width' => '50px',
                 'index' => 'address_id'
@@ -38,7 +39,8 @@ class Hackathon_MailGuard_Block_Adminhtml_Address_Grid extends Mage_Adminhtml_Bl
 
         $this->addColumn('mailaddress',
             array(
-                'header'=> $this->__('Mail Address'),
+                'header' => $this->__('Mail Address'),
+                'header_export' => 'mailaddress',
                 'index' => 'mailaddress'
             )
         );
@@ -46,6 +48,7 @@ class Hackathon_MailGuard_Block_Adminhtml_Address_Grid extends Mage_Adminhtml_Bl
         $this->addColumn('type',
             array(
                 'header'=> $this->__('Type'),
+                'header_export' => 'type',
                 'index' => 'type',
                 'type'  => 'options',
                 'options' => Mage::getSingleton('hackathon_mailguard/system_config_source_type')->getOptionArray(),

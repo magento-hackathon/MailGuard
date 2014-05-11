@@ -12,7 +12,7 @@ Facts
 
 Description
 -----------
-Depending on the e-mail adress or domain name, e-mails are allowed/disallowed to be sent to the customer.
+Depending on the e-mail address or domain name, e-mails are allowed/disallowed to be sent to the customer.
 The e-mail addresses are checked before the e-mail is generated.
 
 Rewrites Mage_Core_Model_Email and Mage_Core_Email_Template to add e-mail sending events:
@@ -27,10 +27,22 @@ Rewrites Mage_Core_Model_Email and Mage_Core_Email_Template to add e-mail sendin
  * Enable/Disable Module
  * Select Mode: Blacklist or Whitelist
  * Activate/deactivate Logging
+ * Importing addresses via CSV file
+
+### Importing addresses via CSV file
+
+The file import dialog can be found in `System > Configuration > Mail Guard > General Settings > Import > Import address list`.
+
+Specify the column names in the first line. Two columns are required: `mailaddress` and `type`.
+The order of the columns is determined automatically. If you export the CSV file you can leave the `id` column in but it will be ignored.
+
+Note that the `type` values are translated. This means that you should import the file in the same language in which you
+exported the entries before. If you get an error that you didn't provide an expected value first check if you have to
+translate the type.
 
 ### Future work
-* CSV Upload for E-Mail Adresses and Domains
-* Check if e-mail adress does really exist (by checking mailbox etc.) [phpclasses.org](http://www.phpclasses.org/package/13-PHP-Determine-if-a-given-e-mail-address-is-valid-.html)
+* Validate input on form edit / CSV import
+* Check if e-mail address does really exist (by checking mailbox etc.) [phpclasses.org](http://www.phpclasses.org/package/13-PHP-Determine-if-a-given-e-mail-address-is-valid-.html)
 * Regex-Support
 
 Compatibility
@@ -43,11 +55,11 @@ Installation Instructions
 
 Contributors
 ---------
-Andre Flitsch (@andreflitsch)
-David Manners (@mannersd)
-Andreas Penz
-Anna Völkl (@rescueAnn)
-Matthias Zeis (@mzeis)
+* Andre Flitsch (@andreflitsch)
+* David Manners (@mannersd)
+* Andreas Penz
+* Anna Völkl (@rescueAnn)
+* Matthias Zeis (@mzeis)
 
 License
 -------
