@@ -11,7 +11,7 @@
             <label>General Settings</label>
             <tab>hackathon_mailguard</tab>
             <frontend_type>text</frontend_type>
-            <sort_order>990</sort_order>
+            <sort_order>10</sort_order>
             <show_in_default>1</show_in_default>
             <show_in_website>1</show_in_website>
             <show_in_store>1</show_in_store>
@@ -56,8 +56,19 @@
                         </logging>
                     </fields>
                 </settings>
-                <import translate="label">
-                    <label>Import</label>
+            </groups>
+        </hackathon_mailguard>
+        <hackathon_mailguard_import translate="label" module="hackathon_mailguard">
+            <label>Import</label>
+            <tab>hackathon_mailguard</tab>
+            <frontend_type>text</frontend_type>
+            <sort_order>20</sort_order>
+            <show_in_default>1</show_in_default>
+            <show_in_website>0</show_in_website>
+            <show_in_store>0</show_in_store>
+            <groups>
+                <csv_file_upload translate="label">
+                    <label>CSV File Upload</label>
                     <frontend_type>text</frontend_type>
                     <sort_order>10</sort_order>
                     <show_in_default>1</show_in_default>
@@ -75,8 +86,8 @@
                             <comment><![CDATA[<strong style="color:red">Warning!</strong> Import will delete all old entries and replace them with the content of the CSV file.]]></comment>
                         </address_list>
                     </fields>
-                </import>
+                </csv_file_upload>
             </groups>
-        </hackathon_mailguard>
+        </hackathon_mailguard_import>
     </sections>
 </config>

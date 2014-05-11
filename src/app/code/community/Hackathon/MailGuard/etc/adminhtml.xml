@@ -11,6 +11,9 @@
                                     <hackathon_mailguard translate="title" module="hackathon_mailguard">
                                         <title>Mail Guard Settings</title>
                                     </hackathon_mailguard>
+                                    <hackathon_mailguard_import translate="title" module="hackathon_mailguard">
+                                        <title>Mail Guard Import</title>
+                                    </hackathon_mailguard_import>
                                 </children>
                             </config>
                             <hackathon_mailguard translate="title" module="hackathon_mailguard">

@@ -109,11 +109,11 @@ class Hackathon_MailGuard_Model_Resource_Address extends Mage_Core_Model_Resourc
      */
     public function uploadAndImport(Varien_Object $object)
     {
-        if (empty($_FILES['groups']['tmp_name']['import']['fields']['address_list']['value'])) {
+        if (empty($_FILES['groups']['tmp_name']['csv_file_upload']['fields']['address_list']['value'])) {
             return $this;
         }
 
-        $csvFile = $_FILES['groups']['tmp_name']['import']['fields']['address_list']['value'];
+        $csvFile = $_FILES['groups']['tmp_name']['csv_file_upload']['fields']['address_list']['value'];
 
         $this->_importColumnMapping = array();
         $this->_importErrors = array();
