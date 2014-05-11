@@ -19,16 +19,16 @@ Rewrites Mage_Core_Model_Email and Mage_Core_Email_Template to add e-mail sendin
 * Mage_Core_Model_Email: `email_send_before, email_send_after`
 * Mage_Core_Model_Email_Template: `email_template_send_before, email_template_send_after`
 
-Features:
-* Block sending e-mails depending on Domainname or full e-mail address
---* When working with domainname it must start with @ e.g. @example.com
-* System Configuration:
---* Enable/Disable Module
---* Select Mode: Blacklist or Whitelist
---* Activate/deactivate Logging
+### Features:
+#### Allows/Blocks sending e-mails
+   depending on Domainname or full e-mail address
+   When working with domainname it must start with @ e.g. @example.com
+#### System Configuration:
+ * Enable/Disable Module
+ * Select Mode: Blacklist or Whitelist
+ * Activate/deactivate Logging
 
-Future work
--------------
+### Future work
 * CSV Upload for E-Mail Adresses and Domains
 * Check if e-mail adress does really exist (by checking mailbox etc.) [phpclasses.org](http://www.phpclasses.org/package/13-PHP-Determine-if-a-given-e-mail-address-is-valid-.html)
 * Regex-Support

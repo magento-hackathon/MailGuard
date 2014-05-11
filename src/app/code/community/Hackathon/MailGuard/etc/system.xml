@@ -24,7 +24,7 @@
                     <show_in_website>1</show_in_website>
                     <show_in_store>1</show_in_store>
                     <fields>
-                        <active translate="label,comment">
+                        <active translate="label comment">
                             <label>Enable Mail Guard</label>
                             <frontend_type>select</frontend_type>
                             <source_model>adminhtml/system_config_source_yesno</source_model>
@@ -44,7 +44,7 @@
                             <show_in_store>1</show_in_store>
                             <comment><![CDATA[Select which type of list you want.]]></comment>
                         </type>
-                        <logging translate="label,comment">
+                        <logging translate="label comment">
                             <label>Enable Mail Logging</label>
                             <frontend_type>select</frontend_type>
                             <source_model>adminhtml/system_config_source_yesno</source_model>
@@ -56,6 +56,26 @@
                         </logging>
                     </fields>
                 </settings>
+                <import translate="label">
+                    <label>Import</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>10</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>0</show_in_website>
+                    <show_in_store>0</show_in_store>
+                    <fields>
+                        <address_list translate="label comment">
+                            <label>Import address list</label>
+                            <frontend_type>hackathonmailguardimport</frontend_type>
+                            <backend_model>adminhtml/system_config_backend_hackathon_mailGuard_addressList</backend_model>
+                            <sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                            <comment><![CDATA[<strong style="color:red">Warning!</strong> Import will delete all old entries and replace them with the content of the CSV file.]]></comment>
+                        </address_list>
+                    </fields>
+                </import>
             </groups>
         </hackathon_mailguard>
     </sections>

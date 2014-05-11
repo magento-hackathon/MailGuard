@@ -90,16 +90,16 @@
             <email_template_send_after>
 			    <observers>
 			        <hackathon_mailguard>
-			<class>hackathon_mailguard/observer</class>
-			<method>emailSendAfter</method>
+                        <class>hackathon_mailguard/observer</class>
+                        <method>emailSendAfter</method>
 			        </hackathon_mailguard>
 			    </observers>
 			</email_template_send_after>
 			<email_send_after>
 			    <observers>
 			        <hackathon_mailguard>
-			<class>hackathon_mailguard/observer</class>
-			<method>emailSendAfter</method>
+                        <class>hackathon_mailguard/observer</class>
+                        <method>emailSendAfter</method>
 			        </hackathon_mailguard>
 			    </observers>
 			</email_send_after>
