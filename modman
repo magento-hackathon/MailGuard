@@ -1,4 +1,6 @@
 src/app/code/community/Hackathon/MailGuard/ app/code/community/Hackathon/MailGuard/
+src/app/code/community/Mage/Adminhtml/Model/System/Config/Backend/Hackathon/MailGuard/AddressList.php app/code/community/Mage/Adminhtml/Model/System/Config/Backend/Hackathon/MailGuard/AddressList.php
+src/app/code/community/Varien/Data/Form/Element/Hackathonmailguardimport.php app/code/community/Varien/Data/Form/Element/Hackathonmailguardimport.php
 src/app/design/adminhtml/default/default/layout/hackathon_mailguard/hackathon_mailguard.xml app/design/adminhtml/default/default/layout/hackathon_mailguard/hackathon_mailguard.xml
 src/app/etc/modules/Hackathon_MailGuard.xml app/etc/modules/Hackathon_MailGuard.xml
 tests/mailTest.php mailTest.php
