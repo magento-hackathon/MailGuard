@@ -73,17 +73,14 @@ class Hackathon_MailGuard_Model_MailGuard extends Mage_Core_Model_Abstract
         $this->_addresses['Recipients'] = $emailsTo;
 
         $validatedRecipients = $this->checkAddresses('Recipients');
-
         if (!empty($validatedRecipients)) {
             if ($email instanceof Mage_Core_Model_Email_Template) {
-
                 if (isset($validatedBcc)) {
                     $this->changeMailHeaders($email->getMail(), $validatedBcc, self::MAIL_HEADER_BCC);
                 }
                 if (isset($validatedCc)) {
                     $this->changeMailHeaders($email->getMail(), $validatedCc, self::MAIL_HEADER_CC);
                 }
-
                 $email->setValidatedEmails($validatedRecipients);
             } else {
                 $email->setToEmail($validatedRecipients);
